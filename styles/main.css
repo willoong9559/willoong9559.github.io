@@ -992,3 +992,10 @@ td {
         font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Droid Sans Fallback','Microsoft YaHei',sans-serif;
       }
     
+      .post-container .post {
+    box-shadow: rgb(218, 224, 235) 0px 0.5rem 2rem 0px;
+    padding: 40px 37px 0px 37px;
+    margin: 28px 0px;
+    border-radius: 6px;
+}
+    
