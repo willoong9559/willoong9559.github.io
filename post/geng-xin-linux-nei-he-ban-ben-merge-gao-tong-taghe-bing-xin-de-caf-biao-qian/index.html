@@ -2,23 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Willoong Blog</title>
+<title>更新Linux内核版本,merge高通tag，合并新的caf标签 | Willoong Blog</title>
 <link rel="shortcut icon" href="https://wloong.xyz/favicon.ico?v=1595315109504">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wloong.xyz/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Willoong Blog - Atom Feed" href="https://wloong.xyz/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="更新Linux内核版本,merge高通tag，合并新的caf标签 | Willoong Blog - Atom Feed" href="https://wloong.xyz/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="先去这里
+该站点提供有关tag + android版本的所有msm soc发布详细信息
+在这里搜索你的msm ..检查最新版本并查找正确的android版本并标记该标记。
+现在打开以下链接之一（取决于您的Linux内核版本）
+3.10：ht..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -73,46 +70,79 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              更新Linux内核版本,merge高通tag，合并新的caf标签
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-21
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
+              <img class="post-feature-image" src="https://wloong.xyz/post-images/geng-xin-linux-nei-he-ban-ben-merge-gao-tong-taghe-bing-xin-de-caf-biao-qian.jpg" alt="">
+            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <p>先去这里<br>
+该站点提供有关tag + android版本的所有msm soc发布详细信息<br>
+在这里搜索你的msm ..检查最新版本并查找正确的android版本并标记该标记。<br>
+现在打开以下链接之一（取决于您的Linux内核版本）</p>
+<pre><code>3.10：https://source.codeaurora.org/quic/la/kernel/msm-3.10/
+3.18：https://source.codeaurora.org/quic/la/kernel/msm-3.18/
+4.4：https://source.codeaurora.org/quic/la/kernel/msm-4.4/
+</code></pre>
+<pre><code>git fetch &lt;repo link&gt; &lt;tag&gt;
+</code></pre>
+<p>例：</p>
+<pre><code>git fetch https://source.codeaurora.org/quic/la/kernel/msm-3.18/ LA.UM.5.5.r1-05300-8x96.0 
+</code></pre>
+<p>然后合并</p>
+<pre><code>git merge FETCH_HEAD
+</code></pre>
+<p>因厂商可能有不同的改动<br>
+重点--&gt;修复冲突即可</p>
+<pre><code>git add -A
+git merge --continue
+</code></pre>
+<p>直至成功合并了一个新的caf标签。</p>
+<p>git mergetool并不是很好用。<br>
+这里推荐Beyond Compare是一个非常好用的差异处理工具。<br>
+Mac上可能需要在.gitconfig文件中加入下面的配置：</p>
+<pre><code>[diff]
+        tool = bcomp
+[difftool &quot;bcomp&quot;]
+        cmd = \&quot;/usr/local/bin/bcomp\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;
+[difftool]
+        prompt = false
+[merge]
+        tool = bcomp
+[mergetool]
+        prompt = false
+[mergetool &quot;bcomp&quot;]
+        cmd = \&quot;/usr/local/bin/bcomp\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; \&quot;$BASE\&quot; \&quot;$MERGED\&quot;
+</code></pre>
+<p>然后安装BeyondCompore的Command line tools即可</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wloong.xyz/post/git-repo-ben-di-zheng-shu-bei-ju/">
+              <h3 class="post-title">
+                git-repo 本地证书被拒
+              </h3>
+            </a>
+          </div>
         
 
         

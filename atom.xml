@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wloong.xyz</id>
     <title>Willoong Blog</title>
-    <updated>2020-07-21T05:55:39.750Z</updated>
+    <updated>2020-07-21T07:06:12.952Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wloong.xyz"/>
     <link rel="self" href="https://wloong.xyz/atom.xml"/>
@@ -15,20 +15,269 @@
         <id>https://wloong.xyz/post/hello-gridea/</id>
         <link href="https://wloong.xyz/post/hello-gridea/">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
+        <updated>2020-07-21T07:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>写写辍学的故事，倒不是我要退学，只是发生在身边的事引发的思考。</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>写写辍学的故事，倒不是我要退学，只是发生在身边的事引发的思考。</p>
 <!-- more -->
-<p>想起前几个月在某推文讲到有人曾在某计算机专业退学，理由就是没有在学校学到一些东西。几年后看原推主下文的评论辍学在家自学实力并没有实质上的长进，被戏称为“增删改查小王子”。<br>
+<p>想起前几个月在某推文讲到有人曾在某大学退学，理由就是没有在学校学到一些东西。辍学在家自学实力并没有实质上的长进，被戏称为“增删改查小王子”。<br>
 有位朋友的评论引发了我深深的思考，现阶段中国的陆本教育固然水分十足。但是退学实在是下下策，单不说学校的教育资源能带给你多少知识储集，本科生的各种免费丰富的学习资源真的是让你受益无穷。本科生的教育经历也是各种职场的敲门砖。<br>
 这个世界很复杂，最难的就是用简的逻辑方法进行思考。有些话想说我确深深觉得自己还不够资格。每个人有自己的观点和思维方式。讲到这里我想教育的本质不只是让人获得金钱利益，同时也是培养人有思考的能力，人是思想的苇草。现行陆本教育将学生分为文理科教育。我认为是很不合理的。文科教育教人更多是感性思维，缺乏逻辑思考能力。我们生活中会遇到各种各样的观点，想法。我认为他们中的很大一部分是经不起推敲的。每个人都应该读一下离散数学这本书。其实，并不需要太复杂的数学逻辑，简单的数学方法都能大幅度提高自己的认识能力。<br>
-说回来，我想反驳他退学的行为，我认为他并没有十分切实可行的长远计划。<br>
-但，这又如何。站在年长者的角度就可以否定你我的大多数观点了，更何况还可能会引发信任危机。想想还是算了吧。</p>
+说回来，我想劝他放弃退学的行为，我认为他并没有十分切实可行的长远计划。<br>
+但，这又如何。站在年长者的角度就可以否定我了，更何况还可能会引发信任危机。想想还是算了吧。</p>
 <blockquote>
 <p>孔乙己自己知道不能和他们谈天，便只好向孩子说话。有一回对我说道，“你读过书么？”我略略点一点头。他说，“读过书，……我便考你一考。茴香豆的茴字，怎样写的？”我想，讨饭一样的人，也配考我么？便回过脸去，不再理会<br>
-<a href="https://www.himself65.com/2020-05/">五月是你的孔乙己</a></p>
+引自himself65-&gt;<a href="https://www.himself65.com/2020-05/">五月是你的孔乙己</a></p>
 </blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[HTML_CSS 元素的各种居中和开发总结]]></title>
+        <id>https://wloong.xyz/post/html_css-yuan-su-de-ge-chong-ju-zhong-he-kai-fa-zong-jie/</id>
+        <link href="https://wloong.xyz/post/html_css-yuan-su-de-ge-chong-ju-zhong-he-kai-fa-zong-jie/">
+        </link>
+        <updated>2020-07-21T06:32:21.000Z</updated>
+        <summary type="html"><![CDATA[<p>单纯居中就好几种方法来实现。但是否足够规范，哪种方案又最优雅呢？</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>单纯居中就好几种方法来实现。但是否足够规范，哪种方案又最优雅呢？</p>
+<!-- more -->
+<h1 id="水平居中">水平居中</h1>
+<h2 id="1行内元素">1.行内元素</h2>
+<pre><code>.parent {
+  text-align: center;
+}
+</code></pre>
+<h2 id="2块级元素子元素要设置宽度">2.块级元素（子元素要设置宽度）</h2>
+<pre><code>.parent {
+  text-align: center;
+}
+.child {
+  width: 100px;
+  margin: auto;
+}
+</code></pre>
+<h1 id="垂直居中">垂直居中</h1>
+<h2 id="1行内元素文字的行高等于盒子的高度可以让单行文本垂直居中">1.行内元素(文字的行高等于盒子的高度，可以让单行文本垂直居中。)</h2>
+<pre><code>.father {
+    height: 20px;
+    line-height: 20px;
+}
+</code></pre>
+<h2 id="2块级元素">2.块级元素</h2>
+<h3 id="21绝对定位margin">2.1绝对定位+margin</h3>
+<p>不足之处：要求指定子元素的宽高（对于需要居中的元素来说，其宽高往往是由其内容来决定的，又不建议固定宽高。）不知道自己高度和父容器高度的情况下，此时看下面绝对定位+translate。</p>
+<h4 id="绝对定位marginauto">绝对定位+margin:auto</h4>
+<pre><code>.parent {
+    position: relative;
+    height: 200px;
+}
+.child {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+</code></pre>
+<h4 id="绝对定位margin思路二">绝对定位+margin思路二</h4>
+<pre><code>.parent {
+    position: relative;
+    min-height: 500px;
+}
+.child {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+</code></pre>
+<p>代码解释：<br>
+先让子元素的左上角居中，然后向上移动宽度的一半(50px)，就达到了垂直居中的效果；水平居中的原理类似。<br>
+min-height与height区别是 min-height子元素可撑高父元素，而height不可。<br>
+top: 50%; 左边框距离浏览器左边50%。left: 50%;同理<br>
+margin-top: -50px; 子元素向左移动宽度一般像素，垂直方向同理。</p>
+<h3 id="22绝对定位translate推荐">2.2绝对定位+translate（推荐）</h3>
+<pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</code></pre>
+<p>代码解释：<br>
+水平同理，Y指垂直线。（水平线（X 轴）和垂直线（Y 轴））</p>
+<pre><code>top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+</code></pre>
+<h3 id="23flex">2.3Flex</h3>
+<p>Flex(父元素设置居中)<br>
+不足之处：会导致父容器里的所有子元素都垂直居中了，无法指定的某个子元素居中。看下面方法二。</p>
+<pre><code>.parent {
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+}
+</code></pre>
+<p>代码补充：<br>
+justify-content: center;/水平居中/</p>
+<h4 id="父flex子margin-方法二">父Flex+子margin （方法二）</h4>
+<pre><code>.father {
+    display: flex;
+}
+.son {
+    margin: auto;
+}
+</code></pre>
+<h3 id="24其他补充">2.4其他补充</h3>
+<h4 id="table布局">table布局</h4>
+<pre><code>.parent {
+  display: table;
+  width: 80px;
+  height: 40px;
+}
+.child {
+  display: table-cell;
+  vertical-align: middle;
+}
+</code></pre>
+<h4 id="多行文字table">多行文字table</h4>
+<pre><code>.parent {
+  width: 400px;
+  height: 300px;
+  display: table-cell;
+  vertical-align: middle;
+  border: 1px solid red;
+}
+.child {
+  display: inline-block;
+  vertical-align: middle;
+  background: blue;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[更新Linux内核版本,merge高通tag，合并新的caf标签]]></title>
+        <id>https://wloong.xyz/post/geng-xin-linux-nei-he-ban-ben-merge-gao-tong-taghe-bing-xin-de-caf-biao-qian/</id>
+        <link href="https://wloong.xyz/post/geng-xin-linux-nei-he-ban-ben-merge-gao-tong-taghe-bing-xin-de-caf-biao-qian/">
+        </link>
+        <updated>2020-07-21T06:31:06.000Z</updated>
+        <content type="html"><![CDATA[<p>先去这里<br>
+该站点提供有关tag + android版本的所有msm soc发布详细信息<br>
+在这里搜索你的msm ..检查最新版本并查找正确的android版本并标记该标记。<br>
+现在打开以下链接之一（取决于您的Linux内核版本）</p>
+<pre><code>3.10：https://source.codeaurora.org/quic/la/kernel/msm-3.10/
+3.18：https://source.codeaurora.org/quic/la/kernel/msm-3.18/
+4.4：https://source.codeaurora.org/quic/la/kernel/msm-4.4/
+</code></pre>
+<pre><code>git fetch &lt;repo link&gt; &lt;tag&gt;
+</code></pre>
+<p>例：</p>
+<pre><code>git fetch https://source.codeaurora.org/quic/la/kernel/msm-3.18/ LA.UM.5.5.r1-05300-8x96.0 
+</code></pre>
+<p>然后合并</p>
+<pre><code>git merge FETCH_HEAD
+</code></pre>
+<p>因厂商可能有不同的改动<br>
+重点--&gt;修复冲突即可</p>
+<pre><code>git add -A
+git merge --continue
+</code></pre>
+<p>直至成功合并了一个新的caf标签。</p>
+<p>git mergetool并不是很好用。<br>
+这里推荐Beyond Compare是一个非常好用的差异处理工具。<br>
+Mac上可能需要在.gitconfig文件中加入下面的配置：</p>
+<pre><code>[diff]
+        tool = bcomp
+[difftool &quot;bcomp&quot;]
+        cmd = \&quot;/usr/local/bin/bcomp\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;
+[difftool]
+        prompt = false
+[merge]
+        tool = bcomp
+[mergetool]
+        prompt = false
+[mergetool &quot;bcomp&quot;]
+        cmd = \&quot;/usr/local/bin/bcomp\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; \&quot;$BASE\&quot; \&quot;$MERGED\&quot;
+</code></pre>
+<p>然后安装BeyondCompore的Command line tools即可</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git-repo 本地证书被拒]]></title>
+        <id>https://wloong.xyz/post/git-repo-ben-di-zheng-shu-bei-ju/</id>
+        <link href="https://wloong.xyz/post/git-repo-ben-di-zheng-shu-bei-ju/">
+        </link>
+        <updated>2020-07-21T06:29:59.000Z</updated>
+        <content type="html"><![CDATA[<p>error</p>
+<pre><code>fatal: Cannot get https://gerrit.googlesource.com/git-repo/clone.bundle 
+fatal: error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)
+</code></pre>
+<p>you can modify this repo file for this issue, please follow the below commands</p>
+<pre><code>sudo cp /usr/local/bin/repo /usr/bin/local/repo_bak
+sudo vi /usr/local/bin/repo
+</code></pre>
+<p>insert the below detail behind 'import sys'</p>
+<pre><code>import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+</code></pre>
+<p>then save this file, and retry again</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[构建 macOS Catalina 10.15.4 编译 LineageOS 17.1 环境]]></title>
+        <id>https://wloong.xyz/post/gou-jian-macos-catalina-10154-bian-yi-lineageos-171-huan-jing/</id>
+        <link href="https://wloong.xyz/post/gou-jian-macos-catalina-10154-bian-yi-lineageos-171-huan-jing/">
+        </link>
+        <updated>2020-07-21T06:25:50.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="sdk下载地址">SDK下载地址:</h1>
+<p><a href="https://developer.apple.com/download/more">点我下载</a><br>
+其实安装最新的命令行工具包就可以了，当然完整xcode也一样。</p>
+<h1 id="配置必须环境">配置必须环境：</h1>
+<p>终端安装findutils</p>
+<pre><code>$ brew install findutils
+</code></pre>
+<p>终端安装gnu-sed</p>
+<pre><code>$ brew install gnu-sed
+</code></pre>
+<h1 id="编译需要导入环境变量">编译需要导入环境变量：</h1>
+<pre><code>export PATH=/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+</code></pre>
+<p>设置打开文件上限</p>
+<pre><code>#set the number of open files to be 1024 
+ulimit -S -n 1024
+</code></pre>
+<h1 id="homebrew给出的环境变量法貌似没用还是找不到头文件所以我们建立链接">homebrew给出的环境变量法貌似没用，还是找不到头文件，所以我们建立链接。</h1>
+<p>注意你的openssl版本openssl/1.0.2s这个位置会不一样。</p>
+<pre><code>cd /usr/local/include
+ln -s /usr/local/Cellar/openssl/1.0.2s/include/openssl .
+cd /usr/local/lib
+for i in /usr/local/Cellar/openssl/1.0.2s/lib/lib*; do ln -vs $i .; done
+</code></pre>
+<h1 id="macos不再支持32位编译内核时会报错">MacOS不再支持32位，编译内核时会报错</h1>
+<p>我在魔趣ROM开源项目的相关改动找到了解决办法，非常感谢龙猪和导演<br>
+<a href="https://mokeedev.review/c/MoKee/android_build/+/30740">Gerrit</a></p>
+<h1 id="增加头文件elfh">增加头文件elf.h</h1>
+<p>存放路径/usr/local/include<br>
+<a href="https://gist.github.com/mlafeldt/3885346">elf.h</a></p>
+<h1 id="可选优化编译我也查过相关原理缓存后确实有明显加快以后的编译速度google也在推荐使用">可选优化编译，我也查过相关原理缓存后确实有明显加快以后的编译速度，google也在推荐使用。</h1>
+<p>附：<br>
+使用ccache</p>
+<p>export USE_CCACHE=1<br>
+ccache -M 50G<br>
+配置ccache路径</p>
+<p>export CCACHE_DIR=/&lt;path_of_your_choice&gt;/.ccache<br>
+启用ccache压缩</p>
+<p>export CCACHE_COMPRESS=1</p>
 ]]></content>
     </entry>
 </feed>

@@ -1,0 +1,205 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>构建 macOS Catalina 10.15.4 编译 LineageOS 17.1 环境 | Willoong Blog</title>
+<link rel="shortcut icon" href="https://wloong.xyz/favicon.ico?v=1595315109504">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wloong.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="构建 macOS Catalina 10.15.4 编译 LineageOS 17.1 环境 | Willoong Blog - Atom Feed" href="https://wloong.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="SDK下载地址:
+点我下载
+其实安装最新的命令行工具包就可以了，当然完整xcode也一样。
+配置必须环境：
+终端安装findutils
+$ brew install findutils
+
+终端安装gnu-sed
+$ brew install..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wloong.xyz">
+  <img class="avatar" src="https://wloong.xyz/images/avatar.png?v=1595315109504" alt="">
+  </a>
+  <h1 class="site-title">
+    Willoong Blog
+  </h1>
+  <p class="site-description">
+    为学日益，为道日损，损之又损，以至于无为，无为而无不为。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/willoong9559" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              构建 macOS Catalina 10.15.4 编译 LineageOS 17.1 环境
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-21
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://wloong.xyz/post-images/gou-jian-macos-catalina-10154-bian-yi-lineageos-171-huan-jing.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="sdk下载地址">SDK下载地址:</h1>
+<p><a href="https://developer.apple.com/download/more">点我下载</a><br>
+其实安装最新的命令行工具包就可以了，当然完整xcode也一样。</p>
+<h1 id="配置必须环境">配置必须环境：</h1>
+<p>终端安装findutils</p>
+<pre><code>$ brew install findutils
+</code></pre>
+<p>终端安装gnu-sed</p>
+<pre><code>$ brew install gnu-sed
+</code></pre>
+<h1 id="编译需要导入环境变量">编译需要导入环境变量：</h1>
+<pre><code>export PATH=/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+</code></pre>
+<p>设置打开文件上限</p>
+<pre><code>#set the number of open files to be 1024 
+ulimit -S -n 1024
+</code></pre>
+<h1 id="homebrew给出的环境变量法貌似没用还是找不到头文件所以我们建立链接">homebrew给出的环境变量法貌似没用，还是找不到头文件，所以我们建立链接。</h1>
+<p>注意你的openssl版本openssl/1.0.2s这个位置会不一样。</p>
+<pre><code>cd /usr/local/include
+ln -s /usr/local/Cellar/openssl/1.0.2s/include/openssl .
+cd /usr/local/lib
+for i in /usr/local/Cellar/openssl/1.0.2s/lib/lib*; do ln -vs $i .; done
+</code></pre>
+<h1 id="macos不再支持32位编译内核时会报错">MacOS不再支持32位，编译内核时会报错</h1>
+<p>我在魔趣ROM开源项目的相关改动找到了解决办法，非常感谢龙猪和导演<br>
+<a href="https://mokeedev.review/c/MoKee/android_build/+/30740">Gerrit</a></p>
+<h1 id="增加头文件elfh">增加头文件elf.h</h1>
+<p>存放路径/usr/local/include<br>
+<a href="https://gist.github.com/mlafeldt/3885346">elf.h</a></p>
+<h1 id="可选优化编译我也查过相关原理缓存后确实有明显加快以后的编译速度google也在推荐使用">可选优化编译，我也查过相关原理缓存后确实有明显加快以后的编译速度，google也在推荐使用。</h1>
+<p>附：<br>
+使用ccache</p>
+<p>export USE_CCACHE=1<br>
+ccache -M 50G<br>
+配置ccache路径</p>
+<p>export CCACHE_DIR=/&lt;path_of_your_choice&gt;/.ccache<br>
+启用ccache压缩</p>
+<p>export CCACHE_COMPRESS=1</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#sdk%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80">SDK下载地址:</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E5%BF%85%E9%A1%BB%E7%8E%AF%E5%A2%83">配置必须环境：</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E9%9C%80%E8%A6%81%E5%AF%BC%E5%85%A5%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">编译需要导入环境变量：</a></li>
+<li><a href="#homebrew%E7%BB%99%E5%87%BA%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%B3%95%E8%B2%8C%E4%BC%BC%E6%B2%A1%E7%94%A8%E8%BF%98%E6%98%AF%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E5%BB%BA%E7%AB%8B%E9%93%BE%E6%8E%A5">homebrew给出的环境变量法貌似没用，还是找不到头文件，所以我们建立链接。</a></li>
+<li><a href="#macos%E4%B8%8D%E5%86%8D%E6%94%AF%E6%8C%8132%E4%BD%8D%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8%E6%97%B6%E4%BC%9A%E6%8A%A5%E9%94%99">MacOS不再支持32位，编译内核时会报错</a></li>
+<li><a href="#%E5%A2%9E%E5%8A%A0%E5%A4%B4%E6%96%87%E4%BB%B6elfh">增加头文件elf.h</a></li>
+<li><a href="#%E5%8F%AF%E9%80%89%E4%BC%98%E5%8C%96%E7%BC%96%E8%AF%91%E6%88%91%E4%B9%9F%E6%9F%A5%E8%BF%87%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86%E7%BC%93%E5%AD%98%E5%90%8E%E7%A1%AE%E5%AE%9E%E6%9C%89%E6%98%8E%E6%98%BE%E5%8A%A0%E5%BF%AB%E4%BB%A5%E5%90%8E%E7%9A%84%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6google%E4%B9%9F%E5%9C%A8%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8">可选优化编译，我也查过相关原理缓存后确实有明显加快以后的编译速度，google也在推荐使用。</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://wloong.xyz/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

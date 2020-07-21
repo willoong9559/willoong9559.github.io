@@ -1,0 +1,327 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HTML_CSS 元素的各种居中和开发总结 | Willoong Blog</title>
+<link rel="shortcut icon" href="https://wloong.xyz/favicon.ico?v=1595315109504">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wloong.xyz/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="HTML_CSS 元素的各种居中和开发总结 | Willoong Blog - Atom Feed" href="https://wloong.xyz/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="单纯居中就好几种方法来实现。但是否足够规范，哪种方案又最优雅呢？
+
+水平居中
+1.行内元素
+.parent {
+  text-align: center;
+}
+
+2.块级元素（子元素要设置宽度）
+.parent {
+  text-align..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wloong.xyz">
+  <img class="avatar" src="https://wloong.xyz/images/avatar.png?v=1595315109504" alt="">
+  </a>
+  <h1 class="site-title">
+    Willoong Blog
+  </h1>
+  <p class="site-description">
+    为学日益，为道日损，损之又损，以至于无为，无为而无不为。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/willoong9559" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              HTML_CSS 元素的各种居中和开发总结
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-21
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://wloong.xyz/post-images/html_css-yuan-su-de-ge-chong-ju-zhong-he-kai-fa-zong-jie.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>单纯居中就好几种方法来实现。但是否足够规范，哪种方案又最优雅呢？</p>
+<!-- more -->
+<h1 id="水平居中">水平居中</h1>
+<h2 id="1行内元素">1.行内元素</h2>
+<pre><code>.parent {
+  text-align: center;
+}
+</code></pre>
+<h2 id="2块级元素子元素要设置宽度">2.块级元素（子元素要设置宽度）</h2>
+<pre><code>.parent {
+  text-align: center;
+}
+.child {
+  width: 100px;
+  margin: auto;
+}
+</code></pre>
+<h1 id="垂直居中">垂直居中</h1>
+<h2 id="1行内元素文字的行高等于盒子的高度可以让单行文本垂直居中">1.行内元素(文字的行高等于盒子的高度，可以让单行文本垂直居中。)</h2>
+<pre><code>.father {
+    height: 20px;
+    line-height: 20px;
+}
+</code></pre>
+<h2 id="2块级元素">2.块级元素</h2>
+<h3 id="21绝对定位margin">2.1绝对定位+margin</h3>
+<p>不足之处：要求指定子元素的宽高（对于需要居中的元素来说，其宽高往往是由其内容来决定的，又不建议固定宽高。）不知道自己高度和父容器高度的情况下，此时看下面绝对定位+translate。</p>
+<h4 id="绝对定位marginauto">绝对定位+margin:auto</h4>
+<pre><code>.parent {
+    position: relative;
+    height: 200px;
+}
+.child {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+</code></pre>
+<h4 id="绝对定位margin思路二">绝对定位+margin思路二</h4>
+<pre><code>.parent {
+    position: relative;
+    min-height: 500px;
+}
+.child {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+</code></pre>
+<p>代码解释：<br>
+先让子元素的左上角居中，然后向上移动宽度的一半(50px)，就达到了垂直居中的效果；水平居中的原理类似。<br>
+min-height与height区别是 min-height子元素可撑高父元素，而height不可。<br>
+top: 50%; 左边框距离浏览器左边50%。left: 50%;同理<br>
+margin-top: -50px; 子元素向左移动宽度一般像素，垂直方向同理。</p>
+<h3 id="22绝对定位translate推荐">2.2绝对定位+translate（推荐）</h3>
+<pre><code>.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</code></pre>
+<p>代码解释：<br>
+水平同理，Y指垂直线。（水平线（X 轴）和垂直线（Y 轴））</p>
+<pre><code>top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+</code></pre>
+<h3 id="23flex">2.3Flex</h3>
+<p>Flex(父元素设置居中)<br>
+不足之处：会导致父容器里的所有子元素都垂直居中了，无法指定的某个子元素居中。看下面方法二。</p>
+<pre><code>.parent {
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+}
+</code></pre>
+<p>代码补充：<br>
+justify-content: center;/水平居中/</p>
+<h4 id="父flex子margin-方法二">父Flex+子margin （方法二）</h4>
+<pre><code>.father {
+    display: flex;
+}
+.son {
+    margin: auto;
+}
+</code></pre>
+<h3 id="24其他补充">2.4其他补充</h3>
+<h4 id="table布局">table布局</h4>
+<pre><code>.parent {
+  display: table;
+  width: 80px;
+  height: 40px;
+}
+.child {
+  display: table-cell;
+  vertical-align: middle;
+}
+</code></pre>
+<h4 id="多行文字table">多行文字table</h4>
+<pre><code>.parent {
+  width: 400px;
+  height: 300px;
+  display: table-cell;
+  vertical-align: middle;
+  border: 1px solid red;
+}
+.child {
+  display: inline-block;
+  vertical-align: middle;
+  background: blue;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">水平居中</a>
+<ul>
+<li><a href="#1%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0">1.行内元素</a></li>
+<li><a href="#2%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%AD%90%E5%85%83%E7%B4%A0%E8%A6%81%E8%AE%BE%E7%BD%AE%E5%AE%BD%E5%BA%A6">2.块级元素（子元素要设置宽度）</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">垂直居中</a>
+<ul>
+<li><a href="#1%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E6%96%87%E5%AD%97%E7%9A%84%E8%A1%8C%E9%AB%98%E7%AD%89%E4%BA%8E%E7%9B%92%E5%AD%90%E7%9A%84%E9%AB%98%E5%BA%A6%E5%8F%AF%E4%BB%A5%E8%AE%A9%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">1.行内元素(文字的行高等于盒子的高度，可以让单行文本垂直居中。)</a></li>
+<li><a href="#2%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0">2.块级元素</a>
+<ul>
+<li><a href="#21%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8Dmargin">2.1绝对定位+margin</a>
+<ul>
+<li><a href="#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8Dmarginauto">绝对定位+margin:auto</a></li>
+<li><a href="#%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8Dmargin%E6%80%9D%E8%B7%AF%E4%BA%8C">绝对定位+margin思路二</a></li>
+</ul>
+</li>
+<li><a href="#22%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8Dtranslate%E6%8E%A8%E8%8D%90">2.2绝对定位+translate（推荐）</a></li>
+<li><a href="#23flex">2.3Flex</a>
+<ul>
+<li><a href="#%E7%88%B6flex%E5%AD%90margin-%E6%96%B9%E6%B3%95%E4%BA%8C">父Flex+子margin （方法二）</a></li>
+</ul>
+</li>
+<li><a href="#24%E5%85%B6%E4%BB%96%E8%A1%A5%E5%85%85">2.4其他补充</a>
+<ul>
+<li><a href="#table%E5%B8%83%E5%B1%80">table布局</a></li>
+<li><a href="#%E5%A4%9A%E8%A1%8C%E6%96%87%E5%AD%97table">多行文字table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wloong.xyz/post/geng-xin-linux-nei-he-ban-ben-merge-gao-tong-taghe-bing-xin-de-caf-biao-qian/">
+              <h3 class="post-title">
+                更新Linux内核版本,merge高通tag，合并新的caf标签
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://wloong.xyz/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

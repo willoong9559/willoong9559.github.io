@@ -2,23 +2,18 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Willoong Blog</title>
+<title>git-repo 本地证书被拒 | Willoong Blog</title>
 <link rel="shortcut icon" href="https://wloong.xyz/favicon.ico?v=1595315109504">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wloong.xyz/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Willoong Blog - Atom Feed" href="https://wloong.xyz/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="git-repo 本地证书被拒 | Willoong Blog - Atom Feed" href="https://wloong.xyz/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="error
+fatal: Cannot get https://gerrit.googlesource.com/git-repo/clone.bundle 
+fatal: error [SSL: CERTIFICATE_VERIFY_FAI..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -73,11 +68,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              git-repo 本地证书被拒
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-21
               </span>
               <span>
                 1 min read
@@ -85,34 +80,41 @@
               
             </div>
             
+              <img class="post-feature-image" src="https://wloong.xyz/post-images/git-repo-ben-di-zheng-shu-bei-ju.jpg" alt="">
+            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <p>error</p>
+<pre><code>fatal: Cannot get https://gerrit.googlesource.com/git-repo/clone.bundle 
+fatal: error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)
+</code></pre>
+<p>you can modify this repo file for this issue, please follow the below commands</p>
+<pre><code>sudo cp /usr/local/bin/repo /usr/bin/local/repo_bak
+sudo vi /usr/local/bin/repo
+</code></pre>
+<p>insert the below detail behind 'import sys'</p>
+<pre><code>import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+</code></pre>
+<p>then save this file, and retry again</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wloong.xyz/post/gou-jian-macos-catalina-10154-bian-yi-lineageos-171-huan-jing/">
+              <h3 class="post-title">
+                构建 macOS Catalina 10.15.4 编译 LineageOS 17.1 环境
+              </h3>
+            </a>
+          </div>
         
 
         
